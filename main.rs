@@ -84,7 +84,7 @@ fn fibonacci_runtime(n: u32) -> u64 {
     b
 }
 
-// Computing Fibonacci at compile time
+// Computing Fibonacci at compile time, Without const, It’s Always Runtime
 const fn fibonacci_compile_time(n: u32) -> u64 {
     match n {
         0 => 0,
@@ -106,6 +106,12 @@ const fn fibonacci_compile_time(n: u32) -> u64 {
 
 // Using compile-time evaluation
 const FIB_10: u64 = fibonacci_compile_time(10); // Computed at compile time!
+
+static FIB_10: u64 = fibonacci_compile_time(10); // Compile-time
+
+let arr: [i32; fibonacci_compile_time(5) as usize] = [0; 5]; // Compile-time
+
+let fib_11 = fibonacci_compile_time(11); // Runtime
 
 // Example 5: Safe Concurrency Without Performance Overhead
 // Demonstrating how Rust's ownership rules enable efficient parallelism
